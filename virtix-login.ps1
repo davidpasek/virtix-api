@@ -28,7 +28,7 @@ try {
     Write-Host "Login successful!"
     # $response # Display the response (e.g., cookie or session info)
     $VIRTIX_SESSION_ID=$response.id
-    $VIRTIX_SESSION_ID # Display the VIRTIX SESSIOn ID
+    $VIRTIX_SESSION_ID # Display the VIRTIX SESSION ID
 }
 catch {
     Write-Error "Login failed: $($_.Exception.Message)"
