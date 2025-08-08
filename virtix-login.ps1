@@ -2,8 +2,8 @@
 ######################
 
 # Define credentials
-$username = "Stan.Zeleny@gmail.com".Trim() # Good practice to trim
-$password = "YourPassword".Trim()             # Good practice to trim
+$username = $env:VIRTIX_USERNAME.Trim()	# Good practice to trim
+$password = $env:VIRTIX_PASSWORD.Trim() # Good practice to trim
 
 # Encode the credentials using UTF-8 (best practice for Basic Auth)
 $pair = "$username`:$password"
@@ -26,7 +26,9 @@ $body = "{}"
 try {
     $response = Invoke-RestMethod -Uri "https://virtix.cloud/virtix-papi/v1/user/login" -Headers $headers -Method POST -Body $body
     Write-Host "Login successful!"
-    $response # Display the response (e.g., cookie or session info)
+    # $response # Display the response (e.g., cookie or session info)
+    $VIRTIX_SESSION_ID=$response.id
+    $VIRTIX_SESSION_ID # Display the VIRTIX SESSIOn ID
 }
 catch {
     Write-Error "Login failed: $($_.Exception.Message)"
