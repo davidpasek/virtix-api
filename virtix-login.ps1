@@ -27,6 +27,7 @@ try {
     $response = Invoke-RestMethod -Uri "https://virtix.cloud/virtix-papi/v1/user/login" -Headers $headers -Method POST -Body $body
     Write-Host "Login successful!"
     $response # Display the response (e.g., cookie or session info)
+    $VIRTIX_SESSION_ID=$response.id
 }
 catch {
     Write-Error "Login failed: $($_.Exception.Message)"
